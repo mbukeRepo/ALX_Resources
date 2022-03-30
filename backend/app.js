@@ -3,11 +3,13 @@ const cors = require('cors');
 const req = require("express/lib/request");
 const mongoose = require("mongoose");
 const Resource = require("./models/Resource");
+const path = require('path');
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
+
 
 app.get("/resources", async (req, res, next) => {
     let resources = await Resource.find();
@@ -29,6 +31,11 @@ app.post("/resources", async (req, res, next) => {
 // app.delete("/resources/:id", async (req, res, next) => {
 
 // });
+
+app.use(express.static(path.join(__dirname, 'build')));
+app.get('/', (req, res, next) => {
+	res.sendFile(path.join(__dirname, 'build', 'index.html'))
+})
 
 
 

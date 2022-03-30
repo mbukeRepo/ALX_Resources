@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const {SchemaTypes} = mongoose;
 const resourceSchema = mongoose.Schema({
     title: {
         type: String,
@@ -9,7 +10,12 @@ const resourceSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    content: [{type: Object}]
+    content: [{type: Object}],
+    owner: {
+        type: SchemaTypes.ObjectId,
+        ref: "User"
+    },
+    likes:[SchemaTypes.ObjectId]
 });
 
 
