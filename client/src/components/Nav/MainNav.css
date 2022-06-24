@@ -1,0 +1,9 @@
+.main-nav__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  color: #ff9d00;
+  padding: 0;
+}

@@ -1,0 +1,22 @@
+.search-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  padding: 15px;
+  width: 80%;
+  max-width: 550px;
+  border-radius: 8px;
+  font-family: 'Fredoka', sans-serif;
+}
+.search-box__btn {
+  background-color: rgb(199, 86, 20);
+  margin-left: 15px;
+  border-radius: 8px;
+  padding: 7px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  color: white;
+}
