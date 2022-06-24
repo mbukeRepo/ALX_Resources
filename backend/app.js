@@ -58,7 +58,7 @@ app.get('/auth/github',(req, res, next) => {
   console.log("authenticating...")
   next();
 },
-  passport.authenticate('github'));
+  passport.authenticate('github', {scope: ["profile"]}));
 
 app.get('/auth/github/callback', 
   passport.authenticate('github', {
@@ -71,7 +71,7 @@ app.get('/auth/github/callback',
 // @desc: retrieves all resources
 app.get("/resources", async (req, res, next) => {
     let resources = await Resource.find();
-    console.log(req);
+    console.log(req.session.user);
     if(req.query.search){
         resources = await Resource.find({$title:{$search: req.query.search}});
     }
