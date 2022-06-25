@@ -30,8 +30,8 @@ export const fetchFeed = () => {
   return async(dispatch) => {
       try {
           dispatch(fetchFeedLoading(true));
-          const feed = await axios.get();
-          dispatch(fetchFeedSuccess(feed));
+          const feed = await axios.get("/resources");
+          dispatch(fetchFeedSuccess(feed.data));
           dispatch(fetchFeedLoading(false));
       } catch (error) {
           dispatch(fetchFeedLoading(false));

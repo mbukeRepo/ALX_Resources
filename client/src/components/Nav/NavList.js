@@ -1,5 +1,6 @@
 import "./NavList.css"
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
+
 const NavList = props => {
     
     return (
@@ -10,9 +11,6 @@ const NavList = props => {
                 </li>
                 : null
             } 
-            <li className="main-nav__list-item">
-                {props.userName}
-            </li>
         </ul>
     );
 }

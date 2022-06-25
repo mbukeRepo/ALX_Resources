@@ -1,22 +1,17 @@
-import { useEffect, useState } from "react";
-import "./FEED-LIST.css"
-import Search from "../components/SearchBox/Search";
+import { useEffect } from "react";
+import "./FEED-LIST.css";
 import {Link} from "react-router-dom";
-import axios from "../utils/axios"
-
-const FeedList = () => {
-    const [feed, setFeed] = useState([]);
-    useEffect( async () => {
-        const feed = await axios.get("/resources", {
-            withCredentials: true
-        });
-        setFeed(feed["data"]);
-    }, [feed]);
+import {connect} from "react-redux";
+import {fetchFeed} from '../actions/feedActionCreators'
+const FeedList = (props) => {
+    useEffect(() => {
+       props.setFeed();
+    }, []);
     return (
         <div className="container">
             <div className="feed-list">
                 <div className="feed-list__items">
-                    { feed ?  feed.map(item => (
+                    { props.feed ?  props.feed.map(item => (
                         <div className="feed-list__item" key={item._id}>
                             <Link to={"/" + item._id}>
                                 <p className="feed-list__item-title">{item.title}</p>
@@ -31,4 +26,15 @@ const FeedList = () => {
     );
 }
 
-export default FeedList;
+const mapDispatchToProps = dispatch => {
+    return {
+        setFeed: () => dispatch(fetchFeed())
+    }
+}
+const mapStateToProps = state => {
+    return {
+        feed: state.feed.resources
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(FeedList);
