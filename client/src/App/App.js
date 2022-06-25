@@ -16,10 +16,14 @@ const App = (props) => {
     }, []);
     return (
         <div className="app-main__layout">
-            <Auth/>
+            {props.isAuth ? null : <Auth/>}
             <MainNav>
                 <Logo/>
-                <NavList/>
+                <NavList 
+                    userName={props.user?.username} 
+                    photo= {props.user?.photos[0].value}
+                    isAuth = {props.isAuth}
+                />
             </MainNav>
             <main >
                 <Switch>
@@ -34,8 +38,10 @@ const App = (props) => {
     );
 }
 const mapStateToProps = (state) => {
+
     return {
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        user: state.auth.user
     }
 }
 const mapDispatchToProps = dispatch => {

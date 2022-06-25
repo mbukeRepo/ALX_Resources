@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App/App';
 import { BrowserRouter } from "react-router-dom";
-import Provider from "react-redux";
+import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import reducer, {initialState} from "./reducers/rootReducer";
 import {createStore, compose, combineReducers, applyMiddleware} from "redux"

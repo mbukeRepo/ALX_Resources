@@ -16,8 +16,11 @@ const authSuccess = (user) => {
 export const authenticate = () => {
     return async(dispatch) => {
         try {
-            const user = await axios.get("/auth/login/success");
-            dispatch(authSuccess(user));    
+            const data = await axios.get("/auth/login/success");
+            if (data.data.isLoggedIn)
+                dispatch(authSuccess(data.data.user));
+            else
+                dispatch(authFailed());
         } catch (error) {
             dispatch(authFailed());             
         }

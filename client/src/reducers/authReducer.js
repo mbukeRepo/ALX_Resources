@@ -5,12 +5,12 @@ const initialState = {
 };
 
 const reducer = (state=initialState, action) => {
-  switch(action) {
+  switch(action.type) {
     case AUTH_SUCCESS: 
       return {
         ...state,
         user: action.payload.user,
-        isAuth: true
+        isAuth: !state.isAuth
       }
     case AUTH_FAILED:
       return {
