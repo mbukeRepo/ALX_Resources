@@ -6,7 +6,7 @@ const path = require('path');
 const passport = require("passport");
 const authRouter = require("./routes/authRoute");
 const session = require('express-session');
-const resourceRouter = require("./routes/resource");
+const resourceRouter = require("./routes/resourceRoute");
 
 const app = express();
 

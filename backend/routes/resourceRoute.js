@@ -26,3 +26,4 @@ router.post("/resources", async (req, res, next) => {
     res.json({status:"success", message:"new resource is created"});
 });
 
+module.exports = router;
