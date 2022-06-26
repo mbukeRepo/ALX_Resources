@@ -40,7 +40,7 @@ router.get('/auth/github/callback',
 
 // method => GET
 // @desc: gets information about user if loggedin
-route.get('/auth/login/success', (req, res, next) => {
+router.get('/auth/login/success', (req, res, next) => {
    if(req.user){
      return res.json({
        success: true,
