@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
     "cookie-session": "^2.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
@@ -19,5 +18,8 @@
     "mongoose": "^6.2.4",
     "passport": "^0.5.3",
     "passport-github": "^1.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.18"
   }
 }
