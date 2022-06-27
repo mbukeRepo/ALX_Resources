@@ -1,5 +1,5 @@
 import {AUTH_FAILED, AUTH_SUCCESS} from "../actions/authActionTypes"
-const initialState = {
+export const initialState = {
   user: null,
   isAuth: false
 };
