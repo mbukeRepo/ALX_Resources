@@ -1,5 +1,5 @@
 import {FETCH_FEED_LOADING, FETCH_FEED_SUCCESS,FETCH_SINGLE_SUCCESS, fe} from "../actions/feedActionTypes"
-const initialState = {
+export const initialState = {
     resources: [],
     resource: null,
     loading: false
