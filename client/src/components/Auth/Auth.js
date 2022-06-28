@@ -1,13 +1,13 @@
 import React from 'react';
 import "./Auth.css";
 
-function Auth() {
+function Auth(props) {
   const github = () => {
       window.open("http://localhost:5000/auth/github", "_self");
   };
   return (
     <div className="auth-card">
-        <div className="cancel-icon">
+        <div className="cancel-icon" onClick={props.setShow}>
             <button>X</button>
         </div>
         <div className="auth-main">

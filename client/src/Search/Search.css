@@ -1,0 +1,23 @@
+.search-container {
+  background-color: black;
+  width: 100%;
+  max-width: 530px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: rgb(245, 136, 11);
+}
+
+.search-container > .search-section {
+  margin-top: 1.2rem;
+}
+
+.search-container > .search-section > input {
+  background-color: rgb(71, 67, 60);
+  padding: 0.8rem;
+  color: rgb(240, 157, 4);
+  font-weight: 600;
+  font-size: 1.1rem;
+}

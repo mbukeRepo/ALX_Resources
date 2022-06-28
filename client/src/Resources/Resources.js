@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import "./Resources.css";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {fetchFeed, searchResource} from '../actions/feedActionCreators'
+import {fetchFeed, searchResource} from '../actions/feedActionCreators';
+import Search from "../Search/Search";
 const Resources = (props) => {
     useEffect(() => {
        props.setFeed();
@@ -11,6 +12,9 @@ const Resources = (props) => {
         <div className="container">
             
             <div className="feed-list">
+                <Search
+                    search={props.search}
+                />
                 <div className="feed-list__items">
                     { props.feed ?  props.feed.map(item => (
                         <div className="feed-list__item" key={item._id}>

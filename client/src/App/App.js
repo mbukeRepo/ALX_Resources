@@ -4,19 +4,20 @@ import NavList from '../components/Nav/NavList';
 import { Switch, Route } from "react-router-dom";
 import Auth from "../components/Auth/Auth"
 import "./App.css"
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import {authenticate} from "../actions/authActionCreators";
 import Resource from "../Resource/Resource";
 import Resources from "../Resources/Resources";
 import Add from "../Add/Add"
 const App = (props) => {
+    const [show, setShow] = useState(true);
     useEffect(() => {
         props.authenticate();
     }, []);
     return (
         <div className="app-main__layout">
-            {props.isAuth ? null : <Auth/>}
+            {props.isAuth || !show ? null : <Auth setShow={() => setShow(false)}/>}
             <MainNav>
                 <Logo/>
                 <NavList 
