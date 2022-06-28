@@ -1,4 +1,6 @@
 const router = require("express").Router();
+const Resource = require("../models/Resource");
+
 // method GET
 // endpoint /resources
 // @desc: retrieves all resources
