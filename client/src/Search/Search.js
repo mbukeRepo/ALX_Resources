@@ -25,6 +25,12 @@ export default function Search(props) {
             <div className="tag mysql">
               <p>Mysql</p>
             </div>
+             <div className="tag react">
+              <p>React</p>
+            </div>
+            <div className="tag python">
+              <p>Python</p>
+            </div>
         </div>
     </div>
   )

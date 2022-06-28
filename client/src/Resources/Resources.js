@@ -15,6 +15,7 @@ const Resources = (props) => {
                 <Search
                     search={props.search}
                 />
+                <div className="list_style"></div>
                 <div className="feed-list__items">
                     { props.feed ?  props.feed.map(item => (
                         <div className="feed-list__item" key={item._id}>
