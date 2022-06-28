@@ -39,3 +39,6 @@
   cursor: pointer;
   margin-top: 0.8rem;
 }
+.tags-section .tag p {
+  text-align: center;
+}
