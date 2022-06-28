@@ -1,5 +1,5 @@
 import reducer, {initialState} from "./feedReducer";
-import {FETCH_FEED_LOADING, FETCH_FEED_SUCCESS,FETCH_SINGLE_SUCCESS, fe} from "../actions/feedActionTypes"
+import {FETCH_FEED_LOADING, FETCH_FEED_SUCCESS,FETCH_SINGLE_SUCCESS,} from "../actions/feedActionTypes"
 
 describe("fundamental reducer test", () => {
   it("testing initial state", () => {

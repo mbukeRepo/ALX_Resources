@@ -1,9 +1,9 @@
 import React from "react";
 import Editor from "../components/Editor/editor";
-import "./SINGLE-FEED.css";
+import "./Resource.css";
 import axios from "../utils/axios";
 
-class SingleFeed extends React.Component{
+class Resource extends React.Component{
     state = {
         content: null,
         editor:null
@@ -40,4 +40,4 @@ class SingleFeed extends React.Component{
 }
 
 
-export default SingleFeed;
+export default Resource;

@@ -1,7 +1,8 @@
 import {
     FETCH_FEED_LOADING,
     FETCH_FEED_SUCCESS,
-    FETCH_SINGLE_SUCCESS
+    FETCH_SINGLE_SUCCESS,
+    SEARCH_RESOURCE
 } from "./feedActionTypes";
 import axios from "../utils/axios"
 const fetchFeedLoading = (loading) => {
@@ -53,3 +54,10 @@ export const fetchSingle = (id) => {
         
     }
 };
+
+export const searchResource=  (text) => {
+    return {
+        type: SEARCH_RESOURCE,
+        text
+    }
+} 

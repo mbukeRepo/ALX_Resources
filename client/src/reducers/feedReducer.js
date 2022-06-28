@@ -1,4 +1,4 @@
-import {FETCH_FEED_LOADING, FETCH_FEED_SUCCESS,FETCH_SINGLE_SUCCESS, fe} from "../actions/feedActionTypes"
+import {FETCH_FEED_LOADING, FETCH_FEED_SUCCESS,FETCH_SINGLE_SUCCESS, SEARCH_RESOURCE} from "../actions/feedActionTypes"
 export const initialState = {
     resources: [],
     resource: null,
@@ -22,6 +22,11 @@ const reducer = (state=initialState, action) => {
                 ...state,
                 resource: action.payload.article
             }
+        case SEARCH_RESOURCE: 
+           return {
+               ...state,
+               resources: state.resources.filter(item => item.title.includes(action.text))
+           }
         default:
             return state;
     }

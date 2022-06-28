@@ -1,14 +1,15 @@
 import { useEffect } from "react";
-import "./FEED-LIST.css";
+import "./Resources.css";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {fetchFeed} from '../actions/feedActionCreators'
-const FeedList = (props) => {
+import {fetchFeed, searchResource} from '../actions/feedActionCreators'
+const Resources = (props) => {
     useEffect(() => {
        props.setFeed();
     }, []);
     return (
         <div className="container">
+            
             <div className="feed-list">
                 <div className="feed-list__items">
                     { props.feed ?  props.feed.map(item => (
@@ -28,7 +29,8 @@ const FeedList = (props) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setFeed: () => dispatch(fetchFeed())
+        setFeed: () => dispatch(fetchFeed()),
+        search: (text) => dispatch(searchResource(text))
     }
 }
 const mapStateToProps = state => {
@@ -37,4 +39,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(FeedList);
+export default connect(mapStateToProps,mapDispatchToProps)(Resources);

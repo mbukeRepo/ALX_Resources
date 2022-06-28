@@ -2,14 +2,14 @@ import MainNav from "../components/Nav/MainNav";
 import Logo from "../components/Nav/Logo";
 import NavList from '../components/Nav/NavList';
 import { Switch, Route } from "react-router-dom";
-import AddFeed from "../pages/ADD-Page";
-import FeedList from "../pages/FEED-LIST";
-import SingleFeed from "../pages/SINGLE-FEED";
 import Auth from "../components/Auth/Auth"
 import "./App.css"
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import {authenticate} from "../actions/authActionCreators"
+import {authenticate} from "../actions/authActionCreators";
+import Resource from "../Resource/Resource";
+import Resources from "../Resources/Resources";
+import Add from "../Add/Add"
 const App = (props) => {
     useEffect(() => {
         props.authenticate();
@@ -27,11 +27,11 @@ const App = (props) => {
             </MainNav>
             <main >
                 <Switch>
-                    <Route path="/add" component={AddFeed} exact/>
-                    <Route path="/feed" component={FeedList}/>
-                    <Route path="/:id" component={SingleFeed} exact/>
+                    <Route path="/add" component={Add} exact/>
+                    <Route path="/feed" component={Resources}/>
+                    <Route path="/:id" component={Resource} exact/>
                     
-                    <Route path="/" component={FeedList} exact/>
+                    <Route path="/" component={Resources} exact/>
                 </Switch>
             </main>
         </div>
