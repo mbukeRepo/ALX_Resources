@@ -15,7 +15,8 @@ const resourceSchema = mongoose.Schema({
         type: SchemaTypes.ObjectId,
         ref: "User"
     },
-    likes:[SchemaTypes.ObjectId]
+    likes:[SchemaTypes.ObjectId],
+    tags: String
 });
 
 
