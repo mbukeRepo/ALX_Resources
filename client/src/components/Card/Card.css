@@ -1,5 +1,5 @@
 .owner-avatar {
-  width: 35px;
+  width: 38px;
   height: 38px;
   border-radius: 50%;
   background-color: wheat;
@@ -10,14 +10,24 @@
   align-items: center;
   margin-bottom: 0.5rem;
   width: 45%;
-  padding: 0.4rem;
-  border-radius: 15px;
 }
-
-.owner:hover {
-  background-color: rgb(144, 132, 110);
-}
-
 .owner .owner-name {
   margin-left: 0.4rem;
+  color: antiquewhite;
+}
+
+.owner .owner-name:hover {
+  text-decoration: underline;
+}
+
+.likes {
+  display: flex;
+  flex-direction: row;
+}
+
+.likes-icon {
+  width: 45px;
+  height: 45px;
+  background-color: antiquewhite;
+  margin-right: 0.3rem;
 }
