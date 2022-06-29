@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import "./Resources.css";
-import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {fetchFeed, searchResource} from '../actions/feedActionCreators';
 import Search from "../Search/Search";
+import Card from "../components/Card/Card";
 const Resources = (props) => {
     useEffect(() => {
        props.setFeed();
@@ -18,12 +18,7 @@ const Resources = (props) => {
                 <div className="list_style"></div>
                 <div className="feed-list__items">
                     { props.feed ?  props.feed.map(item => (
-                        <div className="feed-list__item" key={item._id}>
-                            <Link to={"/" + item._id}>
-                                <p className="feed-list__item-title">{item.title}</p>
-                                <p className="feed-list__item-field">{item.field}</p>
-                            </Link>
-                        </div>
+                        <Card item={item}/>             
                     )) : null}
                 </div>
             </div>

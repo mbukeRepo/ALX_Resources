@@ -25,7 +25,10 @@ const reducer = (state=initialState, action) => {
         case SEARCH_RESOURCE: 
            return {
                ...state,
-               resources: state.resources.filter(item => item.title.includes(action.text))
+               resources: state.resources
+               .filter(item => {
+                   return item.title.toLowerCase().includes(action.text) ||  item.tag.toLowerCase().includes(action.tag)
+               })
            }
         default:
             return state;
@@ -33,3 +36,4 @@ const reducer = (state=initialState, action) => {
 };
 
 export default reducer;
+

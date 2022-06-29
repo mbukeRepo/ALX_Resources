@@ -1,0 +1,23 @@
+.owner-avatar {
+  width: 35px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: wheat;
+}
+.owner {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  margin-bottom: 0.5rem;
+  width: 45%;
+  padding: 0.4rem;
+  border-radius: 15px;
+}
+
+.owner:hover {
+  background-color: rgb(144, 132, 110);
+}
+
+.owner .owner-name {
+  margin-left: 0.4rem;
+}

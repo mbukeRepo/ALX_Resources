@@ -38,3 +38,9 @@ div.search-box > input[type='text'] {
 .image-tool__caption {
   display: none;
 }
+a {
+  color: inherit;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+}
