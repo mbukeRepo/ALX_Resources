@@ -61,3 +61,7 @@ export const searchResource=  (text) => {
         text
     }
 } 
+
+export const createFeed = () =>  {
+
+}

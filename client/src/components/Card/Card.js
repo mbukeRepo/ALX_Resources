@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import "./Card.css"
+import "./Card.css";
+import thumbsUp from "./images.png";
 
 export default function Card(props) {
   return (
@@ -11,7 +12,9 @@ export default function Card(props) {
                         <a target="_blank" className="owner-name" rel="noreferrer" href="https://google.com">Mbuke Prince</a>
                     </div>
                     <div className='likes'>
-                        <div className="likes-icon"></div>
+                        <div className="likes-icon">
+                            <img src={thumbsUp} alt="" srcset="" />
+                        </div>
                         <p>233 likes</p>
                     </div>
                     <p className="feed-list__item-field">{props.item.field}</p>

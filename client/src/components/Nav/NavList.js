@@ -2,7 +2,6 @@ import "./NavList.css"
 import {Link} from "react-router-dom";
 
 const NavList = props => {
-    
     return (
         <ul className="main-nav__list">
             {props.isAuth ?
@@ -13,8 +12,10 @@ const NavList = props => {
             } 
             
                 <li className="main-nav__list-item avatar">
-                    <div className="user-avatar"></div>
-                    <p>name</p>
+                    <div className="user-avatar">
+                        <img src={props.photo} alt="" srcset="" />
+                    </div>
+                    <p>{props.userName}</p>
                 </li>
                
         </ul>
