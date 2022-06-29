@@ -11,6 +11,12 @@ const NavList = props => {
                 </li>
                 : null
             } 
+            
+                <li className="main-nav__list-item avatar">
+                    <div className="user-avatar"></div>
+                    <p>name</p>
+                </li>
+               
         </ul>
     );
 }

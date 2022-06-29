@@ -41,3 +41,19 @@ a {
   color: aliceblue;
   width: 100%;
 }
+
+.avatar {
+  /* background-color: aliceblue; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  margin-right: 0.4rem;
+  border-radius: 50%;
+}
