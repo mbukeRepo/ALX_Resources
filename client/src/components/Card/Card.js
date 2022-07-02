@@ -1,8 +1,8 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import "./Card.css";
-import thumbsUp from "./images.png";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {  faHeart } from '@fortawesome/free-solid-svg-icons'
 export default function Card(props) {
   return (
             <div className="feed-list__item" key={props.item._id}>
@@ -13,7 +13,7 @@ export default function Card(props) {
                     </div>
                     <div className='likes'>
                         <div className="likes-icon">
-                            <img src={thumbsUp} alt="" srcset="" />
+                            <FontAwesomeIcon icon={faHeart} color="white" />
                         </div>
                         <p>233 likes</p>
                     </div>

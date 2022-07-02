@@ -28,10 +28,14 @@
 .likes-icon {
   width: 45px;
   height: 45px;
-  background-color: antiquewhite;
+  /* background-color: antiquewhite; */
   margin-right: 0.3rem;
 }
 .likes-icon img {
   width: 100%;
   border-radius: 20px;
+}
+
+.likes-icon svg {
+  height: 100%;
 }

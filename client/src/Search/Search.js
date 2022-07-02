@@ -1,5 +1,7 @@
 import React from 'react';
 import "./Search.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {  faHeart, faSearch } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function Search(props) {
@@ -10,6 +12,7 @@ export default function Search(props) {
   return (
     <div className='search-container'>
         <div className="search-section">
+                <FontAwesomeIcon icon={faSearch} />
                 <input type="text" onChange={onChange}  />
         </div>
         <div className="tags-section">
