@@ -31,6 +31,10 @@
   /* background-color: antiquewhite; */
   margin-right: 0.3rem;
 }
+.likes-icon:hover {
+  cursor: pointer;
+  color: blanchedalmond;
+}
 .likes-icon img {
   width: 100%;
   border-radius: 20px;

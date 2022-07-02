@@ -21,6 +21,7 @@
   color: rgb(240, 157, 4);
   font-weight: 600;
   font-size: 1.1rem;
+  padding-left: 35px;
 }
 
 .tags-section {
@@ -39,6 +40,20 @@
   cursor: pointer;
   margin-top: 0.8rem;
 }
+
+.tags-section .tag:hover {
+  color: antiquewhite;
+}
 .tags-section .tag p {
   text-align: center;
+}
+
+.search-section {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.search-section svg {
+  position: absolute;
+  margin-left: 15px;
 }

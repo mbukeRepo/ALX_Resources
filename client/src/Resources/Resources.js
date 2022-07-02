@@ -18,7 +18,7 @@ const Resources = (props) => {
                 <div className="list_style"></div>
                 <div className="feed-list__items">
                     { props.feed ?  props.feed.map(item => (
-                        <Card item={item}/>             
+                        <Card item={item} loading/>             
                     )) : null}
                 </div>
             </div>
@@ -35,7 +35,8 @@ const mapDispatchToProps = dispatch => {
 }
 const mapStateToProps = state => {
     return {
-        feed: state.feed.resources
+        feed: state.feed.resources,
+        loading: state.feed.loading
     }
 }
 
