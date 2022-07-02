@@ -17,9 +17,9 @@ const Resources = (props) => {
                 />
                 <div className="list_style"></div>
                 <div className="feed-list__items">
-                    { props.feed ?  props.feed.map(item => (
+                    { props.feed && !props.loading ?  props.feed.map(item => (
                         <Card item={item} loading/>             
-                    )) : null}
+                    )) : <p>Loading...</p>}
                 </div>
             </div>
         </div>
