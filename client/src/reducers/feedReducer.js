@@ -2,7 +2,9 @@ import {FETCH_FEED_LOADING, FETCH_FEED_SUCCESS,FETCH_SINGLE_SUCCESS, SEARCH_RESO
 export const initialState = {
     resources: [],
     resource: null,
-    loading: false
+    loading: false,
+    search: null, 
+    pages: 0
 }
 
 const reducer = (state=initialState, action) => {
@@ -15,21 +17,19 @@ const reducer = (state=initialState, action) => {
         case FETCH_FEED_SUCCESS:
             return {
                 ...state,
-                resources: action.payload.feed
+                resources: action.payload.feed,
+                pages: action.payload.pages
             }
         case FETCH_SINGLE_SUCCESS:
             return {
                 ...state,
                 resource: action.payload.article
             }
-        case SEARCH_RESOURCE: 
-           return {
-               ...state,
-               resources: state.resources
-               .filter(item => {
-                   return item.title.toLowerCase().includes(action.text) ||  item.tag.toLowerCase().includes(action.tag)
-               })
-           }
+        case SEARCH_RESOURCE:
+            return {
+                ...state,
+                search: action.text
+            }
         default:
             return state;
     }
