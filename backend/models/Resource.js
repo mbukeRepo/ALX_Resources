@@ -13,7 +13,7 @@ const resourceSchema = mongoose.Schema({
     owner: {
         type: String
     },
-    likes:[Number],
+    likes:Object,
     tags: String
 });
 resourceSchema.index({name:"text", "title":"text"});

@@ -6,11 +6,6 @@ const Resource = require("../models/Resource");
 // @desc: retrieves all resources
 router.get("/resources", async (req, res, next) => {
     let resources = Resource.find();
-    const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 5;
-    const skip = (page -1 ) * limit;
-    resources = resources.skip(skip).limit(limit);
-
     if (req.query.search){
         const capitalized = req.query.search.charAt(0).toUpperCase() + req.query.search.slice(1);
         resources = resources.find({
@@ -22,9 +17,17 @@ router.get("/resources", async (req, res, next) => {
             ]
         });
     }
-
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 5;
+    const pages = resources.length / limit;
+    const skip = (page -1 ) * limit;
+    resources = resources.skip(skip).limit(limit);
     resources = await resources;
-    res.json(resources);
+
+    res.json({
+        pages,
+        resources
+    });
 })
 
 // method GET
