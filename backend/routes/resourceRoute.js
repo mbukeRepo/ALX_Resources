@@ -5,11 +5,26 @@ const Resource = require("../models/Resource");
 // endpoint /resources
 // @desc: retrieves all resources
 router.get("/resources", async (req, res, next) => {
-    let resources = await Resource.find();
-    if(req.query.search){
-        resources = await Resource.find({$title:{$search: req.query.search}});
+    let resources = Resource.find();
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 5;
+    const skip = (page -1 ) * limit;
+    resources = resources.skip(skip).limit(limit);
+
+    if (req.query.search){
+        const capitalized = req.query.search.charAt(0).toUpperCase() + req.query.search.slice(1);
+        resources = resources.find({
+            $or: [
+                {title: {$regex: req.query.search}}, 
+                {field: {$regex: req.query.search}},
+                {title: {$regex: capitalized}},
+                {field: {$regex: capitalized}}
+            ]
+        });
     }
-    res.json(resources)
+
+    resources = await resources;
+    res.json(resources);
 })
 
 // method GET

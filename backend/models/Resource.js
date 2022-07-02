@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const {SchemaTypes} = mongoose;
 const resourceSchema = mongoose.Schema({
     title: {
         type: String,
@@ -12,12 +11,11 @@ const resourceSchema = mongoose.Schema({
     },
     content: [{type: Object}],
     owner: {
-        type: SchemaTypes.ObjectId,
-        ref: "User"
+        type: String
     },
-    likes:[SchemaTypes.ObjectId],
+    likes:[Number],
     tags: String
 });
-
+resourceSchema.index({name:"text", "title":"text"});
 
 module.exports = mongoose.model("Resource", resourceSchema);
