@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {fetchFeed, searchResource} from '../actions/feedActionCreators';
 import Search from "../Search/Search";
 import Card from "../components/Card/Card";
+
 const Resources = (props) => {
     useEffect(() => {
        props.setFeed();
@@ -13,7 +14,7 @@ const Resources = (props) => {
             
             <div className="feed-list">
                 <Search
-                    search={props.search}
+                    onSearch={props.onSearch}
                 />
                 <div className="list_style"></div>
                 <div className="feed-list__items">
@@ -30,13 +31,14 @@ const Resources = (props) => {
 const mapDispatchToProps = dispatch => {
     return {
         setFeed: () => dispatch(fetchFeed()),
-        search: (text) => dispatch(searchResource(text))
+        onSearch: (search) => dispatch(searchResource(search))
     }
 }
 const mapStateToProps = state => {
     return {
         feed: state.feed.resources,
-        loading: state.feed.loading
+        loading: state.feed.loading,
+        
     }
 }
 

@@ -11,11 +11,18 @@ const fetchFeedLoading = (loading) => {
         loading
     }
 };
-const fetchFeedSuccess = (feed) => {
+export const setSearch = (search) => {
+    return {
+        type: SEARCH_RESOURCE,
+        search
+    }
+}
+const fetchFeedSuccess = (feed, pages) => {
     return {
         type: FETCH_FEED_SUCCESS,
         payload: {
-            feed
+            feed,
+            pages
         }
     }
 }
@@ -27,12 +34,17 @@ const fetchSingleSuccess = (article) => {
         }
     }
 }
-export const fetchFeed = () => {
+export const fetchFeed = (search, page) => {
   return async(dispatch) => {
       try {
           dispatch(fetchFeedLoading(true));
-          const feed = await axios.get("/resources");
-          dispatch(fetchFeedSuccess(feed.data));
+          let url = "/resources?";
+          if (search){
+              url += `search=${search}&`
+          }
+          url += `page=${page}&limit=5`;
+          const feed = await axios.get(url);
+          dispatch(fetchFeedSuccess(feed.data.resources, feed.data.pages));
           dispatch(fetchFeedLoading(false));
       } catch (error) {
           dispatch(fetchFeedLoading(false));

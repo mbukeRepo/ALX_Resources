@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
 import "./Search.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {  faHeart, faSearch } from '@fortawesome/free-solid-svg-icons'
+import {  faSearch } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function Search(props) {
   const onKeyPress = (e) => {
     if(e.key === "Enter"){
-      console.log("enter pressed");
+      props.onSearch(e.target.value);
     }
   };
   return (
