@@ -15,9 +15,10 @@ const reducer = (state=initialState, action) => {
                 loading: action.loading
             }
         case FETCH_FEED_SUCCESS:
+            let newResources = [...action.payload.feed, ...state.resources];
             return {
                 ...state,
-                resources: action.payload.feed,
+                resources: newResources,
                 pages: action.payload.pages
             }
         case FETCH_SINGLE_SUCCESS:
@@ -26,9 +27,10 @@ const reducer = (state=initialState, action) => {
                 resource: action.payload.article
             }
         case SEARCH_RESOURCE:
+            console.log(action.payload);
             return {
                 ...state,
-                search: action.text
+                resources: action.payload.feed
             }
         default:
             return state;

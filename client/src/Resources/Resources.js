@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./Resources.css";
 import {connect} from "react-redux";
 import {fetchFeed, searchResource} from '../actions/feedActionCreators';
@@ -6,15 +6,27 @@ import Search from "../Search/Search";
 import Card from "../components/Card/Card";
 
 const Resources = (props) => {
+    const [page, setPage] = useState(2);
+    const [search, setSearch] = useState(false);
     useEffect(() => {
-       props.setFeed();
+        props.setFeed();
     }, []);
+    const loadMore = () => {
+        if (Math.ceil((props.pages) + 0) >= page)
+            setPage(_page => _page + 1);
+
+        props.setFeed(null,page);
+    }
+    const onSearch = (search) => {
+        props.setFeed(search, page);
+        setSearch(true);
+    } 
     return (
         <div className="container">
             
             <div className="feed-list">
                 <Search
-                    onSearch={props.onSearch}
+                    onSearch={onSearch}
                 />
                 <div className="list_style"></div>
                 <div className="feed-list__items">
@@ -22,6 +34,15 @@ const Resources = (props) => {
                         <Card item={item} loading/>             
                     )) : <p>Loading...</p>}
                 </div>
+                {
+                   ((Math.ceil(props.pages+0) >= page)) ?
+                    !search ? (
+                        <div className="loader" onClick={loadMore}>
+                            <h2>Load More</h2>
+                        </div>
+                    ): null
+                    : null
+                }
             </div>
         </div>
         
@@ -30,15 +51,15 @@ const Resources = (props) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setFeed: () => dispatch(fetchFeed()),
-        onSearch: (search) => dispatch(searchResource(search))
+        setFeed: (search, page) => dispatch(fetchFeed(search, page)),
     }
 }
 const mapStateToProps = state => {
     return {
         feed: state.feed.resources,
         loading: state.feed.loading,
-        
+        pages: state.feed.pages,
+        search: state.feed.search
     }
 }
 

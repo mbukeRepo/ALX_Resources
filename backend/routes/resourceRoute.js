@@ -19,11 +19,11 @@ router.get("/resources", async (req, res, next) => {
     }
     const page = req.query.page * 1 || 1;
     const limit = req.query.limit * 1 || 5;
-    const pages = resources.length / limit;
     const skip = (page -1 ) * limit;
     resources = resources.skip(skip).limit(limit);
-    resources = await resources;
 
+    resources = await resources;
+    const pages = await (await Resource.find()).length / limit;
     res.json({
         pages,
         resources

@@ -11,10 +11,12 @@ const fetchFeedLoading = (loading) => {
         loading
     }
 };
-export const setSearch = (search) => {
+export const setSearch = (feed) => {
     return {
         type: SEARCH_RESOURCE,
-        search
+        payload: {
+            feed
+        }
     }
 }
 const fetchFeedSuccess = (feed, pages) => {
@@ -40,11 +42,16 @@ export const fetchFeed = (search, page) => {
           dispatch(fetchFeedLoading(true));
           let url = "/resources?";
           if (search){
-              url += `search=${search}&`
+              url += `search=${search}`
+              const feed = await axios.get(url);
+              dispatch(setSearch(feed.data.resources));
           }
-          url += `page=${page}&limit=5`;
-          const feed = await axios.get(url);
-          dispatch(fetchFeedSuccess(feed.data.resources, feed.data.pages));
+          else {
+            url += `page=${page}&limit=4`;
+            const feed = await axios.get(url);
+            dispatch(fetchFeedSuccess(feed.data.resources, feed.data.pages));
+          }
+          
           dispatch(fetchFeedLoading(false));
       } catch (error) {
           dispatch(fetchFeedLoading(false));
@@ -66,14 +73,6 @@ export const fetchSingle = (id) => {
         
     }
 };
-
-export const searchResource=  (text) => {
-    return {
-        type: SEARCH_RESOURCE,
-        text
-    }
-} 
-
 export const createFeed = () =>  {
 
 }
