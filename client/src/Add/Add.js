@@ -1,7 +1,8 @@
 import axios from "../utils/axios";
 import {  useState } from "react";
 import Editor from "../components/Editor/editor";
-import "./Add.css"
+import "./Add.css";
+import {connect} from "react-redux";
 
 const AddFeed = (props) => {
     const [item, setItem] = useState({title:"", field: ""});
@@ -20,10 +21,13 @@ const AddFeed = (props) => {
     const createFeed = async(e) => {
         e.preventDefault();
         const delta = await editor.save();
-        console.log(item)
         const data = {
             ...item,
-            content: [...delta.blocks]
+            content: [...delta.blocks],
+            owner: {
+                username: props.user.username,
+                github: props.user.profileUrl   
+            }
         }
         await axios.post("/resources", data);
         props.history.push("/feed");
@@ -65,5 +69,9 @@ const AddFeed = (props) => {
         
     );
 }
-
-export default AddFeed;
+const mapStateToProps = state => {
+    return {
+        user: state.auth.user
+    }
+}
+export default connect(mapStateToProps)(AddFeed);

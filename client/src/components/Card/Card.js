@@ -10,7 +10,11 @@ export default function Card(props) {
                     <Link to={"/" + props.item._id} className="feed-list__item-title">{props.item.title}</Link>
                     <div className="owner" href='google.com'>
                         <p>by</p>
-                        <a target="_blank" className="owner-name" rel="noreferrer" href="https://google.com">Mbuke Prince</a>
+                        <a target="_blank" 
+                           className="owner-name" 
+                           rel="noreferrer" 
+                           href={props.item.owner?.github}
+                        >{props.item.owner?.username}</a>
                     </div>
                     <div className='likes'>
                         <div className="likes-icon">
