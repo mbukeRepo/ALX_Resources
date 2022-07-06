@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../utils/axios";
 import {  useState } from "react";
 import Editor from "../components/Editor/editor";
 import "./Add.css"
@@ -25,8 +25,7 @@ const AddFeed = (props) => {
             ...item,
             content: [...delta.blocks]
         }
-        // console.log(data);
-        await axios.post("http://localhost:5000/resources", data);
+        await axios.post("/resources", data);
         props.history.push("/feed");
     }
     return (

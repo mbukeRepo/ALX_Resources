@@ -73,6 +73,3 @@ export const fetchSingle = (id) => {
         
     }
 };
-export const createFeed = () =>  {
-
-}
