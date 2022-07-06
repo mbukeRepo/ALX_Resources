@@ -15,8 +15,8 @@ const AddFeed = (props) => {
         setItem(
             new_form
         );
-        console.log(e.target, e.target.name);
     }
+    
     const createFeed = async(e) => {
         e.preventDefault();
         const delta = await editor.save();

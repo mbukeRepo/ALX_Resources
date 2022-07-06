@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {fetchFeed} from '../actions/feedActionCreators';
 import Search from "../Search/Search";
 import Card from "../components/Card/Card";
+import Loading from "../components/Loading/Loading";
 
 const Resources = (props) => {
     const [page, setPage] = useState(2);
@@ -30,13 +31,13 @@ const Resources = (props) => {
                 />
                 <div className="list_style"></div>
                 <div className="feed-list__items">
-                    { props.feed && !props.loading ?  props.feed.map(item => (
+                    {props.feed && !props.loading ?  props.feed.map(item => (
                         <Card item={item} loading key={item._id}/>
-                    )) : <p>Loading...</p>}
+                    )) : <Loading/>}
                 </div>
                 {
                    ((Math.ceil(props.pages+0) >= page)) ?
-                    !search ? (
+                    (!search && props.feed) ? (
                         <div className="loader" onClick={loadMore}>
                             <h2>Load More</h2>
                         </div>
