@@ -1,7 +1,7 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import "./Resources.css";
 import {connect} from "react-redux";
-import {fetchFeed, searchResource} from '../actions/feedActionCreators';
+import {fetchFeed} from '../actions/feedActionCreators';
 import Search from "../Search/Search";
 import Card from "../components/Card/Card";
 
@@ -31,7 +31,7 @@ const Resources = (props) => {
                 <div className="list_style"></div>
                 <div className="feed-list__items">
                     { props.feed && !props.loading ?  props.feed.map(item => (
-                        <Card item={item} loading/>             
+                        <Card item={item} loading key={item._id}/>
                     )) : <p>Loading...</p>}
                 </div>
                 {

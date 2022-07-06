@@ -16,7 +16,7 @@ const NavList = props => {
                 {props.isAuth ? 
                     <Fragment>
                         <div className="user-avatar">
-                            <img src={props.photo} alt="" srcset="" />
+                            <img src={props.photo} alt="..." />
                         </div>
                         <p>{props.userName}</p>
                     </Fragment>
