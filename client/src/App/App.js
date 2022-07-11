@@ -16,21 +16,15 @@ import Search from "../Search/Search";
 const App = (props) => {
     const [show, setShow] = useState(true);
     const [search, setSearch] = useState(false);
-    const [page, setPage] = useState(2);
+    
     useEffect(() => {
         props.authenticate();
     }, []);
     const onSearch = (search) => {
-        props.setFeed(search, page);
+        props.setFeed(search, undefined);
         setSearch(true);
     }
-    const loadMore = () => {
-        console.log("loading more");
-        if (Math.ceil((props.pages) + 0) >= page)
-            setPage(_page => _page + 1);
-
-        props.setFeed(null, page);
-    }
+    
     return (
         <div className="app-main__layout">
             {props.isAuth || !show ? null : <Auth setShow={() => setShow(false)}/>}
@@ -39,8 +33,7 @@ const App = (props) => {
                 <Search
                     onSearch={onSearch}
                     search={search}
-                    loadMore = {loadMore}
-                    page={page}
+                    
                 />
                 <NavList 
                     userName={props.user?.username} 

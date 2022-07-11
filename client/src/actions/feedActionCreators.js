@@ -3,6 +3,7 @@ import {
     FETCH_FEED_LOADING,
     FETCH_FEED_SUCCESS,
     FETCH_SINGLE_SUCCESS,
+    SAVE_FEED,
     SEARCH_RESOURCE
 } from "./feedActionTypes";
 import axios from "../utils/axios"
@@ -13,23 +14,50 @@ const fetchFeedLoading = (loading) => {
     }
 };
 export const setSearch = (feed) => {
+    const data = localStorage.getItem("feed");
+    const saved = JSON.parse(data).map(item => item._id);
+    let newFeed = feed.map((item) => {
+        if (saved.includes(item._id)){
+            return {
+                ...item,
+                saved: true
+            }
+        }
+        return {
+            ...item
+        }
+    })
     return {
         type: SEARCH_RESOURCE,
         payload: {
-            feed
+            feed: newFeed
         }
     }
 }
 const fetchFeedSuccess = (feed, pages) => {
+    const data = localStorage.getItem("feed");
+    const saved = JSON.parse(data).map(item => item._id);
+    let newFeed = feed.map((item) => {
+        if (saved.includes(item._id)){
+            return {
+                ...item,
+                saved: true
+            }
+        }
+        return {
+            ...item
+        }
+    })
     return {
         type: FETCH_FEED_SUCCESS,
         payload: {
-            feed,
+            feed:newFeed,
             pages
         }
     }
 }
 const fetchSingleSuccess = (article) => {
+    
     return {
         type: FETCH_SINGLE_SUCCESS,
         payload: {
@@ -78,6 +106,14 @@ export const fetchSingle = (id) => {
 export const createFeed = data => {
     return {
         type: CREATE_FEED,
-        CharacterData
+        data
     }
 }
+
+export const saveFeed = (id) => {
+    return {
+       type: SAVE_FEED,
+       id 
+    }
+}
+

@@ -1,4 +1,4 @@
-import {CREATE_FEED, FETCH_FEED_LOADING, FETCH_FEED_SUCCESS,FETCH_SINGLE_SUCCESS, SEARCH_RESOURCE} from "../actions/feedActionTypes"
+import {CREATE_FEED, FETCH_FEED_LOADING, FETCH_FEED_SUCCESS,FETCH_SINGLE_SUCCESS, SAVE_FEED, SEARCH_RESOURCE} from "../actions/feedActionTypes"
 export const initialState = {
     resources: [],
     resource: null,
@@ -38,6 +38,22 @@ const reducer = (state=initialState, action) => {
                 ...state,
                 resources: action.payload.feed
             }
+        case SAVE_FEED:
+           { 
+            const newResources = state.resources.map(item => {
+               if (item._id === action.id){
+                 return {
+                    ...item,
+                    saved: true
+                }
+               }
+                 
+               return item;
+            });
+            return {
+                ...state,
+                resources: newResources
+            }}
         default:
             return state;
     }

@@ -1,13 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./Resources.css";
 import { connect } from "react-redux";
-import {fetchFeed} from "../actions/feedActionCreators"
+import {fetchFeed} from "../actions/feedActionCreators";
 import Card from "../components/Card/Card";
 import Loading from "../components/Loading/Loading";
 
 const Resources = (props) => {
     
-    
+    const [page, setPage] = useState(2);
     useEffect(() => {
         if (props.location.search) {
             if (props.feed.length !== 0) {
@@ -21,7 +21,12 @@ const Resources = (props) => {
             props.setFeed();
         }
     }, []);
-    console.log(props.pages);
+    const loadMore = () => {
+        if (Math.ceil((props.pages) + 0) >= page){
+            setPage(_page => _page + 1);
+        }
+        props.setFeed(null, page);
+    }
     
     return (
         <div className="container">
@@ -34,9 +39,14 @@ const Resources = (props) => {
                         <Card item={item} loading key={item?._id} />
                     )) : <Loading />}
                 </div>
-                <div className="loader" onClick={props.loadMore}>
-                    <h2>Load More</h2>
-                </div>
+                {
+                    !(Math.ceil((props.pages) + 0) <= page) ?
+                        <div className="loader" onClick={loadMore}>
+                            <h2>Load More</h2>
+                        </div>
+                    : null
+                }
+                
                 
             </div>
         </div>
@@ -46,7 +56,7 @@ const Resources = (props) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setFeed: (search, page) => dispatch(fetchFeed(search, page)),
+        setFeed: (search, page) => dispatch(fetchFeed(search, page))
     }
 }
 const mapStateToProps = state => {
