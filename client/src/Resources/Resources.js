@@ -1,52 +1,46 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./Resources.css";
-import {connect} from "react-redux";
-import {fetchFeed} from '../actions/feedActionCreators';
-import Search from "../Search/Search";
+import { connect } from "react-redux";
+import {fetchFeed} from "../actions/feedActionCreators"
 import Card from "../components/Card/Card";
 import Loading from "../components/Loading/Loading";
 
 const Resources = (props) => {
-    const [page, setPage] = useState(2);
-    const [search, setSearch] = useState(false);
+    
+    
     useEffect(() => {
-        props.setFeed();
-    }, []);
-    const loadMore = () => {
-        if (Math.ceil((props.pages) + 0) >= page)
-            setPage(_page => _page + 1);
+        if (props.location.search) {
+            if (props.feed.length !== 0) {
+                return;
+            } else {
+                props.setFeed();
+            }
+        }
 
-        props.setFeed(null,page);
-    }
-    const onSearch = (search) => {
-        props.setFeed(search, page);
-        setSearch(true);
-    } 
+        else {
+            props.setFeed();
+        }
+    }, []);
+    console.log(props.pages);
+    
     return (
         <div className="container">
-            
+
             <div className="feed-list">
-                <Search
-                    onSearch={onSearch}
-                />
+                
                 <div className="list_style"></div>
                 <div className="feed-list__items">
-                    {props.feed && !props.loading ?  props.feed.map(item => (
-                        <Card item={item} loading key={item._id}/>
-                    )) : <Loading/>}
+                    {props.feed && !props.loading ? props.feed.map(item => (
+                        <Card item={item} loading key={item?._id} />
+                    )) : <Loading />}
                 </div>
-                {
-                   ((Math.ceil(props.pages+0) >= page)) ?
-                    (!search && props.feed) ? (
-                        <div className="loader" onClick={loadMore}>
-                            <h2>Load More</h2>
-                        </div>
-                    ): null
-                    : null
-                }
+                <div className="loader" onClick={props.loadMore}>
+                    <h2>Load More</h2>
+                </div>
+                
             </div>
         </div>
-        
+
     );
 }
 
@@ -64,4 +58,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Resources);
+export default connect(mapStateToProps, mapDispatchToProps)(Resources);

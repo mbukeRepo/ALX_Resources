@@ -11,10 +11,15 @@ const resourceSchema = mongoose.Schema({
     },
     content: [{type: Object}],
     owner: {
-        type: String
+        type: Object
     },
     likes:Object,
-    tags: String
+    tags: String,
+    createdAt:{
+        type:Date,
+        default:Date.now(),
+        select:false 
+    }
 });
 resourceSchema.index({name:"text", "title":"text"});
 

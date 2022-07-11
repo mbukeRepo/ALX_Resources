@@ -1,4 +1,5 @@
 import {
+    CREATE_FEED,
     FETCH_FEED_LOADING,
     FETCH_FEED_SUCCESS,
     FETCH_SINGLE_SUCCESS,
@@ -73,3 +74,10 @@ export const fetchSingle = (id) => {
         
     }
 };
+
+export const createFeed = data => {
+    return {
+        type: CREATE_FEED,
+        CharacterData
+    }
+}

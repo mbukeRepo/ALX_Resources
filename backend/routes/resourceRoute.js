@@ -5,7 +5,7 @@ const Resource = require("../models/Resource");
 // endpoint /resources
 // @desc: retrieves all resources
 router.get("/resources", async (req, res, next) => {
-    let resources = Resource.find();
+    let resources = Resource.find().sort({"createdAt": -1});
     if (req.query.search){
         const capitalized = req.query.search.charAt(0).toUpperCase() + req.query.search.slice(1);
         resources = resources.find({
@@ -21,6 +21,7 @@ router.get("/resources", async (req, res, next) => {
     const limit = req.query.limit * 1 || 5;
     const skip = (page -1 ) * limit;
     resources = resources.skip(skip).limit(limit);
+    
 
     resources = await resources;
     const pages = await (await Resource.find()).length / limit;

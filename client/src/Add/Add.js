@@ -3,6 +3,7 @@ import {  useState } from "react";
 import Editor from "../components/Editor/editor";
 import "./Add.css";
 import {connect} from "react-redux";
+import {createFeed} from "../actions/feedActionCreators"
 
 const AddFeed = (props) => {
     const [item, setItem] = useState({title:"", field: ""});
@@ -29,8 +30,9 @@ const AddFeed = (props) => {
                 github: props.user.profileUrl   
             }
         }
-        await axios.post("/resources", data);
-        props.history.push("/feed");
+        const res = await axios.post("/resources", data);
+        props.createArticle(res.data);
+        props.history.push("/feed?redirect=true");
     }
     return (
         <div className="container">
@@ -74,4 +76,9 @@ const mapStateToProps = state => {
         user: state.auth.user
     }
 }
-export default connect(mapStateToProps)(AddFeed);
+const mapDispatchToProps = dispatch => {
+    return {
+        createArticle : (data) => dispatch(createFeed(data))
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(AddFeed);

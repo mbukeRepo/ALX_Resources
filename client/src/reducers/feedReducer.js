@@ -1,4 +1,4 @@
-import {FETCH_FEED_LOADING, FETCH_FEED_SUCCESS,FETCH_SINGLE_SUCCESS, SEARCH_RESOURCE} from "../actions/feedActionTypes"
+import {CREATE_FEED, FETCH_FEED_LOADING, FETCH_FEED_SUCCESS,FETCH_SINGLE_SUCCESS, SEARCH_RESOURCE} from "../actions/feedActionTypes"
 export const initialState = {
     resources: [],
     resource: null,
@@ -15,11 +15,18 @@ const reducer = (state=initialState, action) => {
                 loading: action.loading
             }
         case FETCH_FEED_SUCCESS:
-            let newResources = [...action.payload.feed, ...state.resources];
+            let newResources = state.resources.concat(action.payload.feed);
             return {
                 ...state,
                 resources: newResources,
                 pages: action.payload.pages
+            }
+        case CREATE_FEED:
+            const newCreatedResources = [...state.resources];
+            newCreatedResources.unshift(action.data);
+            return {
+                ...state,
+                resources: newCreatedResources
             }
         case FETCH_SINGLE_SUCCESS:
             return {
@@ -27,7 +34,6 @@ const reducer = (state=initialState, action) => {
                 resource: action.payload.article
             }
         case SEARCH_RESOURCE:
-            console.log(action.payload);
             return {
                 ...state,
                 resources: action.payload.feed
