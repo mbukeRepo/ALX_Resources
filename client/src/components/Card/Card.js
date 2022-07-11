@@ -20,7 +20,7 @@ function Card(props) {
     return (
         <div className="feed-list__item" key={props.item._id}>
                 <Fragment>
-                    <Link to={"/" + props.item._id} className="feed-list__item-title">{props.item.title}</Link>
+                    <Link to={"/" + props.item._id} onClick={props.handlePosition} className="feed-list__item-title">{props.item.title}</Link>
                     <div className="owner" href='google.com'>
                         <p>by</p>
                         <a target="_blank" 

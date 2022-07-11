@@ -4,4 +4,5 @@ export const FETCH_SINGLE_SUCCESS = "FETCH_SINGLE_SUCCESS";
 export const SEARCH_RESOURCE = "SEARCH_RESOURCE";
 export const CREATE_FEED = "CREATE_FEED";
 export const SAVE_FEED = "SAVE_FEED";
+export const SET_PAGE = "SET_PAGE";
 

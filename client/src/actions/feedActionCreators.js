@@ -4,7 +4,8 @@ import {
     FETCH_FEED_SUCCESS,
     FETCH_SINGLE_SUCCESS,
     SAVE_FEED,
-    SEARCH_RESOURCE
+    SEARCH_RESOURCE,
+    SET_PAGE
 } from "./feedActionTypes";
 import axios from "../utils/axios"
 const fetchFeedLoading = (loading) => {
@@ -114,6 +115,11 @@ export const saveFeed = (id) => {
     return {
        type: SAVE_FEED,
        id 
+    }
+}
+export const setPage = page => {
+    return {
+        type: SET_PAGE 
     }
 }
 
