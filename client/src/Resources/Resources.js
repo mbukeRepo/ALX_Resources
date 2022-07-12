@@ -12,36 +12,25 @@ const Resources = (props) => {
     const [page, setPage] = useState(2);
     const {setFeed, clearFeed, feed} = props;
     const initialFetch = () => {
-        if (feed.length !== 0) {
-            return ;
-        }
-        else {
             setFeed(undefined, 1);
-        }
         return () => {
-            console.log("hello world");
             clearFeed();
         }
     }
     useEffect(() => {
         initialFetch();
-        // props.setSearch(true);
-        console.log(props);
         props.toggleSearch(true);
         return () => {
             clearFeed();
-            // props.setSearch(false);
             props.toggleSearch(false);
         }
     }, [])
 
     const loadMore = (e) => {
         if (Math.ceil((props.pages) + 0) >= page){
-            console.log("Firing");
             setPage(_page => _page + 1);
         }
         props.setFeed(null, page);
-        console.log(page);
     }
     
     return (

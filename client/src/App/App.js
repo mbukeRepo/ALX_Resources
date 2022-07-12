@@ -46,9 +46,7 @@ const App = (props) => {
             <main >
                 <Switch>
                     {props.isAuth ? 
-                        <Route path="/add" exact>
-                            <Add/>
-                        </Route>
+                        <Route path="/add" component={Add} exact/>
                         : null
                     }
                     <Route path="/feed">

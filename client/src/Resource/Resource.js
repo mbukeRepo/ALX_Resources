@@ -13,7 +13,6 @@ class Resource extends React.Component{
     componentDidMount = async () => {
            const feed = (await axios.get("/resources/" + this.props.match.params.id))["data"];
            this.setState({content: feed.content});
-           console.log(this.state);
     }
     
 
