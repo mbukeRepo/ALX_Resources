@@ -5,7 +5,7 @@ import {
     FETCH_SINGLE_SUCCESS,
     SAVE_FEED,
     SEARCH_RESOURCE,
-    SET_PAGE
+    CLEAR_FEED
 } from "./feedActionTypes";
 import axios from "../utils/axios"
 const fetchFeedLoading = (loading) => {
@@ -18,7 +18,7 @@ export const setSearch = (feed) => {
     const data = localStorage.getItem("feed");
     const saved = JSON.parse(data).map(item => item._id);
     let newFeed = feed.map((item) => {
-        if (saved.includes(item._id)){
+        if (saved.includes(item._id)) {
             return {
                 ...item,
                 saved: true
@@ -39,7 +39,7 @@ const fetchFeedSuccess = (feed, pages) => {
     const data = localStorage.getItem("feed");
     const saved = JSON.parse(data).map(item => item._id);
     let newFeed = feed.map((item) => {
-        if (saved.includes(item._id)){
+        if (saved.includes(item._id)) {
             return {
                 ...item,
                 saved: true
@@ -52,13 +52,13 @@ const fetchFeedSuccess = (feed, pages) => {
     return {
         type: FETCH_FEED_SUCCESS,
         payload: {
-            feed:newFeed,
+            feed: newFeed,
             pages
         }
     }
 }
 const fetchSingleSuccess = (article) => {
-    
+
     return {
         type: FETCH_SINGLE_SUCCESS,
         payload: {
@@ -67,40 +67,40 @@ const fetchSingleSuccess = (article) => {
     }
 }
 export const fetchFeed = (search, page) => {
-  return async(dispatch) => {
-      try {
-          dispatch(fetchFeedLoading(true));
-          let url = "/resources?";
-          if (search){
-              url += `search=${search}`
-              const feed = await axios.get(url);
-              dispatch(setSearch(feed.data.resources));
-          }
-          else {
-            url += `page=${page}&limit=4`;
-            const feed = await axios.get(url);
-            dispatch(fetchFeedSuccess(feed.data.resources, feed.data.pages));
-          }
-          
-          dispatch(fetchFeedLoading(false));
-      } catch (error) {
-          dispatch(fetchFeedLoading(false));
+    return async (dispatch) => {
+        try {
+            dispatch(fetchFeedLoading(true));
+            let url = "/resources?";
+            if (search) {
+                url += `search=${search}`
+                const feed = await axios.get(url);
+                dispatch(setSearch(feed.data.resources));
+            }
+            else {
+                url += `page=${page}&limit=4`;
+                const feed = await axios.get(url);
+                dispatch(fetchFeedSuccess(feed.data.resources, feed.data.pages));
+            }
 
-      }
-  }
+            dispatch(fetchFeedLoading(false));
+        } catch (error) {
+            dispatch(fetchFeedLoading(false));
+
+        }
+    }
 };
 export const fetchSingle = (id) => {
-    
+
     return async (dispatch) => {
         try {
             dispatch(fetchFeedLoading(true));
             const artice = await axios.get();
-            dispatch(fetchSingleSuccess(artice));    
+            dispatch(fetchSingleSuccess(artice));
             dispatch(fetchFeedLoading(false));
         } catch (error) {
             dispatch(fetchFeedLoading(false));
         }
-        
+
     }
 };
 
@@ -113,13 +113,14 @@ export const createFeed = data => {
 
 export const saveFeed = (id) => {
     return {
-       type: SAVE_FEED,
-       id 
+        type: SAVE_FEED,
+        id
     }
 }
-export const setPage = page => {
+
+export const clearFeed = () => {
     return {
-        type: SET_PAGE 
+        type: CLEAR_FEED
     }
 }
 

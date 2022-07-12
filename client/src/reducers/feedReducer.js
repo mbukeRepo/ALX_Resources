@@ -1,11 +1,17 @@
-import {CREATE_FEED, FETCH_FEED_LOADING, FETCH_FEED_SUCCESS,FETCH_SINGLE_SUCCESS, SAVE_FEED, SEARCH_RESOURCE, SET_PAGE} from "../actions/feedActionTypes"
+import {
+    CREATE_FEED, 
+    FETCH_FEED_LOADING, 
+    FETCH_FEED_SUCCESS,
+    FETCH_SINGLE_SUCCESS, 
+    SAVE_FEED, 
+    SEARCH_RESOURCE, 
+    CLEAR_FEED} from "../actions/feedActionTypes"
 export const initialState = {
     resources: [],
     resource: null,
     loading: false,
     search: null, 
-    pages: 0,
-    page: 2
+    pages: 0
 }
 
 const reducer = (state=initialState, action) => {
@@ -55,11 +61,11 @@ const reducer = (state=initialState, action) => {
                 ...state,
                 resources: newResources
             }}
-        case SET_PAGE: 
-          return {
-              ...state,
-              page: state.page + 1
-          }
+        case CLEAR_FEED: 
+         return {
+             ...state,
+             resources: []
+         }
         default:
             return state;
     }
