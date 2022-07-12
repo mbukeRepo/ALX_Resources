@@ -10,7 +10,7 @@ import { useEffect } from "react";
 const Resources = (props) => {
     
     const [page, setPage] = useState(2);
-    const {setFeed, clearFeed, feed} = props;
+    const {setFeed, clearFeed} = props;
     const initialFetch = () => {
             setFeed(undefined, 1);
         return () => {
@@ -49,7 +49,7 @@ const Resources = (props) => {
                     )) : <Loading />}
                 </div>
                 {
-                    !(Math.ceil((props.pages) + 0) <= page) ?
+                    !(Math.ceil((props.pages) + 0) <= page) && !props.searching ?
                         <div className="loader" onClick={loadMore}>
                             <h2>Load More</h2>
                         </div>
@@ -75,7 +75,7 @@ const mapStateToProps = state => {
         feed: state.feed.resources,
         loading: state.feed.loading,
         pages: state.feed.pages,
-        search: state.feed.search
+        searching: state.feed.searching
     }
 }
 

@@ -12,7 +12,7 @@ export const initialState = {
     showSearch: true,
     resource: null,
     loading: false,
-    search: null, 
+    searching: false, 
     pages: 0,
     
 }
@@ -46,7 +46,8 @@ const reducer = (state=initialState, action) => {
         case SEARCH_RESOURCE:
             return {
                 ...state,
-                resources: action.payload.feed
+                resources: action.payload.feed,
+                searching: true,
             }
         case SAVE_FEED:
            { 

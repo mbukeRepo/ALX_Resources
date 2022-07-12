@@ -7,6 +7,7 @@ export const initialState = {
         resource: null,
         loading: false,
         showSearch: true,
+        searching: false
     }
 };
 
