@@ -3,12 +3,15 @@ import {  useState } from "react";
 import Editor from "../components/Editor/editor";
 import "./Add.css";
 import {connect} from "react-redux";
-import {createFeed} from "../actions/feedActionCreators"
+import {createFeed, toggleSearch} from "../actions/feedActionCreators"
+import { useEffect } from "react";
 
 const AddFeed = (props) => {
     const [item, setItem] = useState({title:"", field: ""});
     const [editor, setEditor] = useState();
-    
+    useEffect(() => {
+        props.toggleSearch(false);
+    }, []);
     const onChange = (e) => {
         const new_form = {
             ...item,
@@ -78,7 +81,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        createArticle : (data) => dispatch(createFeed(data))
+        createArticle : (data) => dispatch(createFeed(data)),
+        toggleSearch: (toggle) => dispatch(toggleSearch(toggle))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AddFeed);

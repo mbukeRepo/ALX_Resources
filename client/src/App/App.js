@@ -45,9 +45,12 @@ const App = (props) => {
             </MainNav>
             <main >
                 <Switch>
-                    <Route path="/add" exact>
-                        <Add/>
-                    </Route>
+                    {props.isAuth ? 
+                        <Route path="/add" exact>
+                            <Add/>
+                        </Route>
+                        : null
+                    }
                     <Route path="/feed">
                         <Resources/>
                     </Route>
