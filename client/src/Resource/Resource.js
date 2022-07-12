@@ -3,6 +3,7 @@ import Editor from "../components/Editor/editor";
 import "./Resource.css";
 import axios from "../utils/axios";
 
+
 class Resource extends React.Component{
     state = {
         content: null,
@@ -12,8 +13,9 @@ class Resource extends React.Component{
     componentDidMount = async () => {
            const feed = (await axios.get("/resources/" + this.props.match.params.id))["data"];
            this.setState({content: feed.content});
-           console.log(this.state)
+           console.log(this.state);
     }
+    
 
     
     render () {

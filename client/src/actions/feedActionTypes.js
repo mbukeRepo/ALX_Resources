@@ -5,4 +5,5 @@ export const SEARCH_RESOURCE = "SEARCH_RESOURCE";
 export const CREATE_FEED = "CREATE_FEED";
 export const SAVE_FEED = "SAVE_FEED";
 export const CLEAR_FEED = "CLEAR_FEED";
+export const TOGGLE_SEARCH = "TOGGLE_SEARCH";
 

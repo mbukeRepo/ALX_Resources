@@ -42,6 +42,7 @@ a {
   text-decoration: none;
   color: aliceblue;
   width: 100%;
+  cursor: pointer;
 }
 
 .avatar {

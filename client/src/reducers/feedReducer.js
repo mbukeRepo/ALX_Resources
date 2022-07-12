@@ -5,13 +5,16 @@ import {
     FETCH_SINGLE_SUCCESS, 
     SAVE_FEED, 
     SEARCH_RESOURCE, 
-    CLEAR_FEED} from "../actions/feedActionTypes"
+    CLEAR_FEED,
+    TOGGLE_SEARCH} from "../actions/feedActionTypes"
 export const initialState = {
     resources: [],
+    showSearch: true,
     resource: null,
     loading: false,
     search: null, 
-    pages: 0
+    pages: 0,
+    
 }
 
 const reducer = (state=initialState, action) => {
@@ -66,6 +69,11 @@ const reducer = (state=initialState, action) => {
              ...state,
              resources: []
          }
+        case TOGGLE_SEARCH : 
+        return {
+            ...state,
+            showSearch: action.toggle
+        }
         default:
             return state;
     }

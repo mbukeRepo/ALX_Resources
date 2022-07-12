@@ -1,7 +1,7 @@
 import {  useState } from "react";
 import "./Resources.css";
 import { connect } from "react-redux";
-import {fetchFeed, clearFeed} from "../actions/feedActionCreators";
+import {fetchFeed, clearFeed, toggleSearch} from "../actions/feedActionCreators";
 import Card from "../components/Card/Card";
 import Loading from "../components/Loading/Loading";
 import { useEffect } from "react";
@@ -25,8 +25,13 @@ const Resources = (props) => {
     }
     useEffect(() => {
         initialFetch();
+        // props.setSearch(true);
+        console.log(props);
+        props.toggleSearch(true);
         return () => {
             clearFeed();
+            // props.setSearch(false);
+            props.toggleSearch(false);
         }
     }, [])
 
@@ -72,7 +77,8 @@ const Resources = (props) => {
 const mapDispatchToProps = dispatch => {
     return {
         setFeed: (search, page) => dispatch(fetchFeed(search, page)),
-        clearFeed: () => dispatch(clearFeed())
+        clearFeed: () => dispatch(clearFeed()),
+        toggleSearch: (toggle) => dispatch(toggleSearch(toggle))
     }
 }
 const mapStateToProps = state => {

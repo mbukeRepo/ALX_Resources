@@ -5,7 +5,8 @@ import {
     FETCH_SINGLE_SUCCESS,
     SAVE_FEED,
     SEARCH_RESOURCE,
-    CLEAR_FEED
+    CLEAR_FEED,
+    TOGGLE_SEARCH
 } from "./feedActionTypes";
 import axios from "../utils/axios"
 const fetchFeedLoading = (loading) => {
@@ -121,6 +122,12 @@ export const saveFeed = (id) => {
 export const clearFeed = () => {
     return {
         type: CLEAR_FEED
+    }
+}
+export const toggleSearch = (toggle) => {
+    return {
+        type: TOGGLE_SEARCH,
+        toggle
     }
 }
 

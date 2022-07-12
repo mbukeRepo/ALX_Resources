@@ -5,7 +5,8 @@ export const initialState = {
     feed: {
         resources: [],
         resource: null,
-        loading: false
+        loading: false,
+        showSearch: true,
     }
 };
 

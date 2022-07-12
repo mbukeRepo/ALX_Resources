@@ -30,11 +30,13 @@ const App = (props) => {
             {props.isAuth || !show ? null : <Auth setShow={() => setShow(false)}/>}
             <MainNav>
                 <Logo/>
+                {props.showSearch ? 
                 <Search
-                    onSearch={onSearch}
-                    search={search}
-                    
-                />
+                onSearch={onSearch}
+                search={search} 
+                /> : null
+                }
+                
                 <NavList 
                     userName={props.user?.username} 
                     photo= {props.user?.photos[0].value}
@@ -43,10 +45,13 @@ const App = (props) => {
             </MainNav>
             <main >
                 <Switch>
-                    <Route path="/add" component={Add} exact/>
-                    <Route path="/feed" component={Resources}/>
+                    <Route path="/add" exact>
+                        <Add/>
+                    </Route>
+                    <Route path="/feed">
+                        <Resources/>
+                    </Route>
                     <Route path="/:id" component={Resource} exact/>
-                    
                     <Route path="/" component={Resources} exact/>
                 </Switch>
             </main>
@@ -57,7 +62,8 @@ const mapStateToProps = (state) => {
 
     return {
         isAuth: state.auth.isAuth,
-        user: state.auth.user
+        user: state.auth.user,
+        showSearch: state.feed.showSearch
     }
 }
 const mapDispatchToProps = dispatch => {
