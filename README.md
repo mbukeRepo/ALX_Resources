@@ -2,7 +2,7 @@
 
 ALX_Resources is a platform I built to enable alx students to share
 resources about the program. These resources will help them to complete
-the assignments. This is the codebase of that platform
+the assignments. This is the codebase for that platform
 
 ---
 
@@ -15,9 +15,9 @@ engineering program.
 ## Project Tour
 
 1. backend : simple expressjs server that serves the frontend
-2. frontend : reactjs frontend
+2. client : reactjs frontend
 
-## Running the site
+## Running the code
 
 ```
 	cd ./frontend
@@ -31,3 +31,5 @@ engineering program.
 
 ## 
 
+<h2>Developers<h2>
+<p>Mbuke Prince</p>

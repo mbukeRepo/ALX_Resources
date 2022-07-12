@@ -43,8 +43,8 @@ router.get("/resources/:id", async (req, res, next) => {
 // endpoint /resources
 // @desc: creates new resource
 router.post("/resources", async (req, res, next) => {
-    await Resource.create(req.body);
-    res.json({status:"success", message:"new resource is created"});
+    const resource = await Resource.create(req.body);
+    res.json(resource);
 });
 
 module.exports = router;
